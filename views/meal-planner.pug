@@ -1,0 +1,73 @@
+extends common/layout
+
+block content
+  .container.mt-4
+    .row
+      h1.mb-4.text-center Meal Plan
+      // left section - nutrition summary
+      .col-md-4
+        .card.mb-4
+          .card-body
+            h5.card-title Nutrition Summary
+            table.table.table-bordered
+              tbody
+                tr.table-primary
+                  th Total Calories
+                  td #{totalCalories} kcal
+                tr.table-info
+                  th Total Protein
+                  td #{totalProtein}g
+                tr.table-success
+                  th Total Carbs
+                  td #{totalCarbs}g
+                tr.table-warning
+                  th Total Fat
+                  td #{totalFat}g
+                tr.table-danger
+                  th Total Sugar
+                  td #{totalSugar}g
+                tr.table-secondary
+                  th Total Fiber
+                  td #{totalFiber}g
+                tr.table-light
+                  th Total Sodium
+                  td #{totalSodium}mg
+                tr.table-info
+                  th Total Potassium
+                  td #{totalPotassium}mg
+                tr.table-warning
+                  th Total Saturated Fat
+                  td #{totalSaturatedFat}g
+                tr.table-danger
+                  th Total Cholesterol
+                  td #{totalCholesterol}mg
+
+      // right section - food items
+      .col-md-8
+        .card
+          .card-body
+            h5.card-title Food Items
+            if items && items.length > 0
+              table.table.table-bordered
+                thead
+                  tr.table-primary
+                    th Food Name
+                    th Calories
+                    th Protein
+                    th Carbs
+                    th Fat
+                    th Action
+                tbody
+                  each item in items
+                    tr
+                      td= item.name
+                      td.table-info #{item.calories} kcal
+                      td.table-success #{item.protein}g
+                      td.table-warning #{item.carbs}g
+                      td.table-danger #{item.fat}g
+                      td
+                        form(action="/deletefood" method="POST" style="display: inline;")
+                          input(type="hidden" name="itemId" value=item.id)
+                          button.btn.btn-sm.btn-outline-danger(type="submit") Delete
+            else
+              p.text-muted No items added yet 

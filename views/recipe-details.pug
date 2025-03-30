@@ -1,0 +1,50 @@
+extends common/layout
+
+block content
+  .container.mt-4
+    .row.mb-4
+      .col-12
+        h1= recipe.title
+
+    .row.mb-4
+      .col-md-6
+        if recipe.image
+          img.img-fluid(src=recipe.image alt=recipe.title)
+      .col-md-6
+        .card
+          .card-body
+            h5.card-title Recipe Information
+            .row
+              p Ready in: #{recipe.readyInMinutes} minutes
+            .row
+              p Servings: #{recipe.servings}
+            .row
+              p Health Score: #{recipe.healthScore}/100
+            .row
+              .col-md-10.mb-2
+                a.btn.btn-primary(href=recipe.sourceUrl target="_blank") View Original Recipe
+              .col-md-10
+                form(action="/food" method="GET")
+                  input(type="hidden" name="q" value=recipe.title)
+                  button.btn.btn-success(type="submit") Search Nutrition Info
+
+    .row.mb-4
+      .col-12
+        .card
+          .card-body
+            h5.card-title Ingredients
+            ul.list-unstyled
+              each ingredient in recipe.extendedIngredients
+                li= ingredient.original
+
+    .row.mb-4
+      .col-12
+        .card
+          .card-body
+            h5.card-title Instructions
+            ol
+              each step in recipe.analyzedInstructions[0].steps
+                li= step.step
+        
+        
+            

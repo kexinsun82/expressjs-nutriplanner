@@ -1,0 +1,74 @@
+extends common/layout
+
+block content
+  .row.justify-content-center
+    .col-md-10
+      h1.mb-4.text-center Food Search
+      
+      .search-section.mb-4
+        form(action="/food" method="GET")
+          .input-group
+            input.form-control(type="text" name="q" value=query placeholder="Search for food...")
+            button.btn.btn-primary(type="submit") Search
+
+      if foods && foods.length > 0
+        .food-list
+          each food in foods
+            .card.mb-3
+              .card-body
+                h5.card-title= food.name
+                .row
+                  .col-md-4
+                    p.mb-1 Calories: #{food.calories}
+                    p.mb-1 Protein: #{food.protein}g
+                    p.mb-1 Carbs: #{food.carbs}g
+                    p.mb-1 Fat: #{food.fat}g
+                  .col-md-4
+                    p.mb-1 Fiber: #{food.fiber}g
+                    p.mb-1 Sugar: #{food.sugar}g
+                    p.mb-1 Serving Size: #{food.servingSize}g
+                    p.mb-1 Sodium: #{food.sodium}mg
+                  .col-md-4
+                    p.mb-1 Potassium: #{food.potassium}mg
+                    p.mb-1 Saturated Fat: #{food.saturatedFat}g
+                    p.mb-1 Cholesterol: #{food.cholesterol}mg
+                form(action="/addfood" method="POST")
+                  input(type="hidden" name="name" value=food.name)
+                  input(type="hidden" name="calories" value=food.calories)
+                  input(type="hidden" name="protein" value=food.protein)
+                  input(type="hidden" name="carbs" value=food.carbs)
+                  input(type="hidden" name="fat" value=food.fat)
+                  input(type="hidden" name="sugar" value=food.sugar)
+                  input(type="hidden" name="fiber" value=food.fiber)
+                  input(type="hidden" name="sodium" value=food.sodium)
+                  input(type="hidden" name="potassium" value=food.potassium)
+                  input(type="hidden" name="saturatedFat" value=food.saturatedFat)
+                  input(type="hidden" name="cholesterol" value=food.cholesterol)
+                  button.btn.btn-success(type="submit") Add to Meal
+      else if query
+        p.text-center No results found for "#{query}"
+
+    .col-md-10.mt-4
+      .recommended-foods
+        h2.mb-4.text-center Healthy Food Recommendations
+        .list-group
+          a.list-group-item.list-group-item-action(href="/food?q=salmon")
+            .d-flex.w-100.justify-content-between
+              h5.mb-1 Salmon
+              small.text-muted High in Omega-3
+          a.list-group-item.list-group-item-action(href="/food?q=spinach")
+            .d-flex.w-100.justify-content-between
+              h5.mb-1 Spinach
+              small.text-muted Rich in Iron
+          a.list-group-item.list-group-item-action(href="/food?q=quinoa")
+            .d-flex.w-100.justify-content-between
+              h5.mb-1 Quinoa
+              small.text-muted Complete Protein
+          a.list-group-item.list-group-item-action(href="/food?q=avocado")
+            .d-flex.w-100.justify-content-between
+              h5.mb-1 Avocado
+              small.text-muted Healthy Fats
+          a.list-group-item.list-group-item-action(href="/food?q=blueberries")
+            .d-flex.w-100.justify-content-between
+              h5.mb-1 Blueberries
+              small.text-muted Antioxidants

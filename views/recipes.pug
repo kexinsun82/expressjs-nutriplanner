@@ -1,0 +1,70 @@
+extends common/layout
+
+block content
+  .container.mt-4
+    .row.justify-content-center
+      .col-md-10
+        h1.mb-4.text-center Recipe Search
+        
+        .search-section.mb-3
+          form(action="/recipes" method="GET")
+            .input-group
+              input.form-control(type="text" name="q" value=query placeholder="Search recipes by ingredients (e.g., chicken, pasta, vegetables)")
+              button.btn.btn-primary(type="submit") Search
+
+        if recipes && recipes.length > 0
+          .recipe-list
+            each recipe in recipes
+              .card.mb-3
+                .card-body
+                  h5.card-title.text-center= recipe.title
+                  p.card-text.text-center
+                    | Ready in: #{recipe.readyInMinutes} minutes | 
+                    | Health Score: #{recipe.healthScore}/100
+                  .text-center
+                    a.btn.btn-primary(href=`/recipe-details/${recipe.id}`) View Recipe
+        else if query
+          p.text-center No recipes found for "#{query}"
+
+      .col-md-10.mt-4
+        .recommended-recipes
+          h2.mb-4 Popular Healthy Recipes
+          .list-group
+            a.list-group-item.list-group-item-action(href="/recipes?q=mediterranean")
+              .d-flex.w-100.justify-content-between
+                h5.mb-1 Mediterranean Bowl
+                small.text-muted High in Protein
+            a.list-group-item.list-group-item-action(href="/recipes?q=vegetarian")
+              .d-flex.w-100.justify-content-between
+                h5.mb-1 Vegetarian Stir-Fry
+                small.text-muted Quick & Easy
+            a.list-group-item.list-group-item-action(href="/recipes?q=smoothie")
+              .d-flex.w-100.justify-content-between
+                h5.mb-1 Green Smoothie
+                small.text-muted Nutrient-Rich
+            a.list-group-item.list-group-item-action(href="/recipes?q=salad")
+              .d-flex.w-100.justify-content-between
+                h5.mb-1 Quinoa Salad
+                small.text-muted Complete Meal
+            a.list-group-item.list-group-item-action(href="/recipes?q=soup")
+              .d-flex.w-100.justify-content-between
+                h5.mb-1 Vegetable Soup
+                small.text-muted Low-Calorie
+                
+      .col-md-10.mt-4
+        .card
+          .card-body
+            h5.card-title.mb-3 Explore Recipes
+            #randomRecipes
+              if randomRecipes && randomRecipes.length > 0
+                .row
+                  each recipe in randomRecipes
+                    .col-md-4.mb-3
+                      .card.h-100
+                        if recipe.image
+                          img.card-img-top(src=recipe.image alt=recipe.title)
+                        .card-body
+                          h6.card-title= recipe.title
+                          p.card-text Ready in: #{recipe.readyInMinutes} minutes
+                          .text-center
+                            a.btn.btn-sm.btn-outline-primary(href=`/recipe-details/${recipe.id}`) View Recipe
