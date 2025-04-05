@@ -48,7 +48,8 @@ git clone https://github.com/your-username/nutriplanner.git
 cd nutriplanner
 npm install
 Create a .env file in the root with your API keys and settings. Example:
-SPOONACULAR_API_KEY=your_spoonacular_api_key
+CALORIENINJAS_API_KEY=your_CALORIENINJAS_api_key
+SPOONACULAR_API_KEY=your_SPOONACULAR_api_key
 npm run dev
 http://localhost:PORT
 ```
