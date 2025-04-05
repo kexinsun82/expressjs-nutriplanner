@@ -50,25 +50,29 @@ block content
 
     .col-md-10.mt-4
       .recommended-foods
-        h2.mb-4.text-center Healthy Food Recommendations
-        .list-group
-          a.list-group-item.list-group-item-action(href="/food?q=salmon")
-            .d-flex.w-100.justify-content-between
-              h5.mb-1 Salmon
-              small.text-muted High in Omega-3
-          a.list-group-item.list-group-item-action(href="/food?q=spinach")
-            .d-flex.w-100.justify-content-between
-              h5.mb-1 Spinach
-              small.text-muted Rich in Iron
-          a.list-group-item.list-group-item-action(href="/food?q=quinoa")
-            .d-flex.w-100.justify-content-between
-              h5.mb-1 Quinoa
-              small.text-muted Complete Protein
-          a.list-group-item.list-group-item-action(href="/food?q=avocado")
-            .d-flex.w-100.justify-content-between
-              h5.mb-1 Avocado
-              small.text-muted Healthy Fats
-          a.list-group-item.list-group-item-action(href="/food?q=blueberries")
-            .d-flex.w-100.justify-content-between
-              h5.mb-1 Blueberries
-              small.text-muted Antioxidants
+        h2.mb-4.text-center Healthy Food Recommendation
+        .food-recommendations
+          a.food-item(href="/food?q=blueberries")
+            .food-info
+              .food-name Blueberries
+              .food-benefit Rich in antioxidants
+          
+          a.food-item(href="/food?q=salmon")
+            .food-info
+              .food-name Salmon
+              .food-benefit Rich in Omega-3
+          
+          a.food-item(href="/food?q=spinach")
+            .food-info
+              .food-name Spinach
+              .food-benefit Rich in iron
+          
+          a.food-item(href="/food?q=quinoa")
+            .food-info
+              .food-name Quinoa
+              .food-benefit Complete protein
+          
+          a.food-item(href="/food?q=avocado")
+            .food-info
+              .food-name Avocado
+              .food-benefit Healthy fat

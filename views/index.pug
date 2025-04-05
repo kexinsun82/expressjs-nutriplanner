@@ -8,14 +8,13 @@ block content
         p.text-center.mb-4 Track your meals and discover healthy recipes
 
     .row.justify-content-center
-      // left section - search and random recipes
       .col-md-10
         .card.mb-4
           .card-body
             h5.card-title Search Food
             form(action="/food" method="GET")
               .input-group
-                input.form-control(type="text" name="q" placeholder="Search for food items...")
+                input.form-control(type="text" name="q" placeholder="Milk, Salmon, Spinach...")
                 button.btn.btn-primary(type="submit") Search
 
         .card

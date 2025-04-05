@@ -1,7 +1,7 @@
 extends common/layout
 
 block content
-  .container.mt-4
+  .container.mt-4.mb-4
     .row.justify-content-center
       .col-md-10
         h1.mb-4.text-center Recipe Search
@@ -9,7 +9,7 @@ block content
         .search-section.mb-3
           form(action="/recipes" method="GET")
             .input-group
-              input.form-control(type="text" name="q" value=query placeholder="Search recipes by ingredients (e.g., chicken, pasta, vegetables)")
+              input.form-control(type="text" name="q" value=query placeholder="Search recipes by ingredients (chicken, pasta, vegetables..)")
               button.btn.btn-primary(type="submit") Search
 
         if recipes && recipes.length > 0
@@ -28,29 +28,33 @@ block content
 
       .col-md-10.mt-4
         .recommended-recipes
-          h2.mb-4 Popular Healthy Recipes
-          .list-group
-            a.list-group-item.list-group-item-action(href="/recipes?q=mediterranean")
-              .d-flex.w-100.justify-content-between
-                h5.mb-1 Mediterranean Bowl
-                small.text-muted High in Protein
-            a.list-group-item.list-group-item-action(href="/recipes?q=vegetarian")
-              .d-flex.w-100.justify-content-between
-                h5.mb-1 Vegetarian Stir-Fry
-                small.text-muted Quick & Easy
-            a.list-group-item.list-group-item-action(href="/recipes?q=smoothie")
-              .d-flex.w-100.justify-content-between
-                h5.mb-1 Green Smoothie
-                small.text-muted Nutrient-Rich
-            a.list-group-item.list-group-item-action(href="/recipes?q=salad")
-              .d-flex.w-100.justify-content-between
-                h5.mb-1 Quinoa Salad
-                small.text-muted Complete Meal
-            a.list-group-item.list-group-item-action(href="/recipes?q=soup")
-              .d-flex.w-100.justify-content-between
-                h5.mb-1 Vegetable Soup
-                small.text-muted Low-Calorie
-                
+          h2.mb-4.text-center Healthy Recipes Recommendation  
+          .food-recommendations
+            a.food-item(href="/recipes?q=mediterranean")
+              .food-info
+                .food-name Mediterranean Bowl
+                .recipe-benefit High protein
+            
+            a.food-item(href="/recipes?q=vegetarian")
+              .food-info
+                .food-name Vegetarian Stir Fry
+                .recipe-benefit Quick and easy
+            
+            a.food-item(href="/recipes?q=smoothie")
+              .food-info
+                .food-name Green Smoothie
+                .recipe-benefit Nutritious
+            
+            a.food-item(href="/recipes?q=salad")
+              .food-info
+                .food-name Quinoa Salad
+                .recipe-benefit Complete meal
+            
+            a.food-item(href="/recipes?q=soup")
+              .food-info
+                .food-name Vegetable Soup
+                .recipe-benefit Low calories
+
       .col-md-10.mt-4
         .card
           .card-body

@@ -83,7 +83,7 @@ app.get("/meal-planner", async (req, res) => {
   const mealPlans = await MealPlanDB.getMealPlans();
   console.log("Retrieved meal plans:", mealPlans);
   
-  // calculate the total of all nutrition info
+  // calculate the total nutrition
   const totals = mealPlans.reduce((account, item) => {
     account.totalCalories += parseFloat(item.calories) || 0;
     account.totalProtein += parseFloat(item.protein) || 0;
@@ -127,7 +127,7 @@ app.get("/recipes", async (req, res) => {
 app.get("/recipe-details/:id", async (req, res) => {
   const recipe = await getRecipeInfo(req.params.id);
   if (recipe) {
-    // search for the nutrition info of recipe
+    // search for the recipe's nutrition
     const nutritionInfo = await FoodDB.searchFood(recipe.title);
     res.render("recipe-details", { 
       recipe,
